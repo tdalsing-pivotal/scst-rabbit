@@ -1,0 +1,51 @@
+plugins {
+    id "java"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+}
+
+repositories {
+    mavenCentral()
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = "com.vmware"
+    version = "0.0.1-SNAPSHOT"
+
+    compileJava {
+        sourceCompatibility = 11
+        targetCompatibility = 11
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+
+        imports {
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:2.6.6'
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2021.0.1'
+        }
+
+        dependencies {
+
+        }
+
+    }
+
+    dependencies {
+
+        compileOnly "org.projectlombok:lombok:1.18.22"
+        annotationProcessor "org.projectlombok:lombok:1.18.22"
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.6'
+        testImplementation 'org.awaitility:awaitility:4.2.0'
+
+        testCompileOnly "org.projectlombok:lombok:1.18.22"
+        testAnnotationProcessor "org.projectlombok:lombok:1.18.22"
+
+    }
+}

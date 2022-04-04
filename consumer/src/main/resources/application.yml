@@ -1,0 +1,34 @@
+server:
+  port: 8911
+
+spring:
+  cloud:
+    function:
+      definition: consumer;consumerDlq
+    stream:
+      rabbit:
+        bindings:
+          consumer-in-0:
+            consumer:
+              auto-bind-dlq: true
+              quorum:
+                enabled: true
+          consumerDlq-in-0:
+            consumer:
+              bindQueue: false
+              declareExchange: false
+
+      bindings:
+        consumer-in-0:
+          destination: scst-consumer
+          contentType: text/plain
+          group: scst-rabbit-app
+          consumer:
+            default-retryable: false
+            retryable-exceptions:
+              org.springframework.dao.NonTransientDataAccessResourceException: false
+              org.springframework.dao.TransientDataAccessResourceException: true
+        consumerDlq-in-0:
+          destination: scst-consumer
+          contentType: text/plain
+          group: scst-rabbit-app.dlq

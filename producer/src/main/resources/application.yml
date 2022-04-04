@@ -1,0 +1,10 @@
+server:
+  port: 8912
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        out:
+          destination: scst-consumer
+          contentType: text/plain

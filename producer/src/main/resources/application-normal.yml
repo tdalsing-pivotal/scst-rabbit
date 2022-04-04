@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5673
+    virtual-host: vhost1
+    username: vmware
+    password: tanzu

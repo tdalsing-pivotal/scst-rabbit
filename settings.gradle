@@ -1,0 +1,4 @@
+rootProject.name = 'scst-rabbit'
+
+include 'consumer'
+include 'producer'
