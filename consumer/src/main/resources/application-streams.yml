@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    stream:
+      rabbit:
+        bindings:
+          consumer-in-0:
+            consumer:
+              bindQueue: false
+              declareExchange: false
+              queueNameGroupOnly: true
+
+      bindings:
+        consumer-in-0:
+          destination: scst-consumer
+          contentType: text/plain
+          group: scst-consumer-streams
+          consumer:
+            default-retryable: false
+            retryable-exceptions:
+              org.springframework.dao.NonTransientDataAccessResourceException: false
+              org.springframework.dao.TransientDataAccessResourceException: true
+        consumerDlq-in-0:
+          destination: scst-consumer-streams
+          contentType: text/plain

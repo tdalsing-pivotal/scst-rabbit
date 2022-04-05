@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    stream:
+      rabbit:
+        bindings:
+          out:
+            producer:
+              bindQueue: false
+              declareExchange: false
+
+      bindings:
+        out:
+          destination: scst-consumer
+          contentType: text/plain
